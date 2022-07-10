@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@1,800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@1,500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@1,500&family=Open+Sans:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@1,500&family=Open+Sans&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style/style.css">
+    <title>Redberry Knight Cup</title>
+
+</head>
+<body>
+    <div class="container">
+        <div class="left-content">
+            <header>
+                <div class="header">
+                    <img class="logo" src="images/Vector.png" alt="">
+                    <img class="header-title" src="images/Redberry Knight Cup.png" alt="">                    
+                </div>
+            </header>
+            <div>
+                <img class="second-page-photo" src="images/4.png" alt="">
+            </div>
+            <div class="second-page-left-title-div">
+                <div>
+                    <h2 class="h2-third">“Many have become chess masters;</h2>
+                </div>
+                <div>
+                    <h2 class="h2-third">no one has become the master of chess.”</h2>
+                </div>
+                <div>
+                    <h3 class="h3-third">- Siegbert Tarrasch</h3>
+                </div>
+            </div>
+        </div>
+        <div class="third-page-right-content">
+            <div class="top-right">
+                <span class="top-right-title">First step is done, continue to finish onboarding</span>
+            </div>
+            <div class="steps">
+                <div class="steps-top">
+                    <div id="one-third">
+                        <img class="sign" src="images/sign.png" alt="">
+                    </div>
+                    <div class="line"></div>
+                    <div id="two-third">2</div>
+                </div>
+                <div class="steps-bottom">
+                    <span class="personal-information">Personal information</span>
+                    <span class="chess-experience">Chess experience</span>
+                </div>
+            </div>
+            <div class="div-info">
+                <p class="personal-info">Chess experience</p>
+                <p class="basic-info">This is basic informaton fields</p>
+            </div>
+                
+            <div class="choose">
+                <div id="choose-left">
+                    <div class="custom-select" >
+                        <select required>
+                          <option value="0">Level of knowledge *</option>
+                          <option value="1">Beginner</option>
+                          <option value="2">Intermediate</option>
+                          <option value="3">Professional</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div id="choose-right" >
+                    <button id="character-btn" onclick="dropdown()">Choose your character *
+                    <img class="arr" src="images/arr.png" alt=""></button>
+                    <div class="app">
+                        <ul id="app-list"></ul>
+                    </div>
+                </div>  
+            </div>
+
+
+            <div class="participate-div">
+                <span class="participate-title">Have you participated in the Redberry Championship? *</span>
+                <div class="yes-no">
+                    <input id="yes" type="radio" name="choose" value="yes" required>
+                    <label class="label-yes" for="">Yes</label>
+                    <input id="no" type="radio" name="choose" value="no" required>
+                    <label class="label-no for=">No</label>
+                </div>
+            </div>
+            <div class="buttons">
+                <div class="btn-back">
+                    <a class="back-a" href="second.html"><button class="back">Back</button></a>
+                </div>
+                <div class="btn-next">
+                    <a class="next-a" href="fourth.html">
+                        <button class="next">
+                            <span class="result-span">Done</span>
+                        </button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+    var x, i, j, l, ll, selElmnt, a, b, c;
+        /* Look for any elements with the class "custom-select": */
+        x = document.getElementsByClassName("custom-select");
+        l = x.length;
+        for (i = 0; i < l; i++) {
+          selElmnt = x[i].getElementsByTagName("select")[0];
+          ll = selElmnt.length;
+          /* For each element, create a new DIV that will act as the selected item: */
+          a = document.createElement("DIV");
+          a.setAttribute("class", "select-selected");
+          a.innerHTML = selElmnt.options[selElmnt.selectedIndex].innerHTML;
+          x[i].appendChild(a);
+          /* For each element, create a new DIV that will contain the option list: */
+          b = document.createElement("DIV");
+          b.setAttribute("class", "select-items select-hide");
+          for (j = 1; j < ll; j++) {
+            /* For each option in the original select element,
+            create a new DIV that will act as an option item: */
+            c = document.createElement("DIV");
+            c.innerHTML = selElmnt.options[j].innerHTML;
+            c.addEventListener("click", function(e) {
+                /* When an item is clicked, update the original select box,
+                and the selected item: */
+                var y, i, k, s, h, sl, yl;
+                s = this.parentNode.parentNode.getElementsByTagName("select")[0];
+                sl = s.length;
+                h = this.parentNode.previousSibling;
+                for (i = 0; i < sl; i++) {
+                  if (s.options[i].innerHTML == this.innerHTML) {
+                    s.selectedIndex = i;
+                    h.innerHTML = this.innerHTML;
+                    y = this.parentNode.getElementsByClassName("same-as-selected");
+                    yl = y.length;
+                    for (k = 0; k < yl; k++) {
+                      y[k].removeAttribute("class");
+                    }
+                    this.setAttribute("class", "same-as-selected");
+                    break;
+                  }
+                }
+                h.click();
+            });
+            b.appendChild(c);
+          }
+          x[i].appendChild(b);
+          a.addEventListener("click", function(e) {
+            /* When the select box is clicked, close any other select boxes,
+            and open/close the current select box: */
+            e.stopPropagation();
+            closeAllSelect(this);
+            this.nextSibling.classList.toggle("select-hide");
+            this.classList.toggle("select-arrow-active");
+          });
+        }
+        
+        function closeAllSelect(elmnt) {
+          /* A function that will close all select boxes in the document,
+          except the current select box: */
+          var x, y, i, xl, yl, arrNo = [];
+          x = document.getElementsByClassName("select-items");
+          y = document.getElementsByClassName("select-selected");
+          xl = x.length;
+          yl = y.length;
+          for (i = 0; i < yl; i++) {
+            if (elmnt == y[i]) {
+              arrNo.push(i)
+            } else {
+              y[i].classList.remove("select-arrow-active");
+            }
+          }
+          for (i = 0; i < xl; i++) {
+            if (arrNo.indexOf(i)) {
+              x[i].classList.add("select-hide");
+            }
+          }
+        }
+        
+        /* If the user clicks anywhere outside the select box,
+        then close all select boxes: */
+        document.addEventListener("click", closeAllSelect);
+
+        function dropdown(){
+        fetch('https://chess-tournament-api.devtest.ge/api/grandmasters',{
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/JSON'
+            }
+        })
+        .then(function(response){
+            if(response.status !==200){
+                throw error
+            }
+            return response.json()
+        })
+        .then(function(data){
+            console.log(data);
+            data.forEach(item=> {
+                let li = document.createElement('li')
+                let span = document.createElement('span')
+                span.textContent = item.name 
+                
+                let img = document.createElement('img')
+                let url = 'https://chess-tournament-api.devtest.ge'
+                img.src =url + item.image
+                img.style.width = '25px'
+                img.style.marginRight = '20px'
+                img.style.float = 'right'
+
+                var div = document.querySelector('.app')
+                div.style.display = 'block'
+
+                let list = document.getElementById('app-list')
+                list.style.listStyleType = 'none'
+                list.style.display = 'flex'
+                list.style.flexDirection = 'column'
+                list.style.textAlign = 'start'
+                li.style.marginBottom = '5px'
+                li.style.cursor = "pointer"
+                li.appendChild(span)
+                li.appendChild(img)
+                list.appendChild(li)
+
+                span.addEventListener('click', chooseCharacter)
+                function chooseCharacter(){
+                    if(span.click){
+                        var btn = document.getElementById('character-btn')
+                        btn.innerHTML = span.innerHTML
+                        div.style.display = 'none'
+                    }
+                }
+           
+            });
+        })
+        .catch(function(error){
+            console.log(error)
+        })
+
+    }
+
+    if(true){
+        var secondBtn = document.getElementById('two-third')
+        secondBtn.style.backgroundColor = '#E9FAF1'
+    }
+        </script>
+</body>
+</html>
